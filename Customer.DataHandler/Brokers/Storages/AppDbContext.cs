@@ -26,9 +26,6 @@ namespace Customer.DataHandler.Brokers.Storages
             return user;
         }
 
-        public IQueryable<User> SelectAllClients() =>
-            this.Users.AsQueryable();
-
         public async Task<User> SelectClientByIdAsync(Guid userId) =>
             await this.Users.FindAsync(userId);
 
