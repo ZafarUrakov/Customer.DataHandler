@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Customer.DataHandler.Services
 {
-    internal class UserService
+    internal partial class UserService
     {
         private readonly AppDbContext _dbContext;
         private readonly IValidator<User> _userValidator;
@@ -21,8 +21,9 @@ namespace Customer.DataHandler.Services
             _dbContext = dbContext;
             _userValidator = userValidator;
         }
-
-        internal Task<User> AddUser(User user)
+        /// <exception cref="NullUserException"></exception>
+        /// <exception cref="InvalidUserException"></exception>
+        internal Task<User> AddUserAsync(User user)
         {
             if (user is null)
                 throw new NullUserException();
