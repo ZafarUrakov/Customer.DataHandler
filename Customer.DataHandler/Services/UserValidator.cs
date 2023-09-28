@@ -4,10 +4,11 @@
 //===============================
 
 using Customer.DataHandler.Brokers.DateTimes;
+using Customer.DataHandler.Models.Users;
 using FluentValidation;
 using System;
 
-namespace Customer.DataHandler.Models.Users
+namespace Customer.DataHandler.Services
 {
     internal class UserValidator : AbstractValidator<User>
     {
@@ -33,7 +34,7 @@ namespace Customer.DataHandler.Models.Users
 
         public bool LessThan12(DateTimeOffset date)
         {
-            DateTimeOffset now = this.dateTimeBroker.GetDataTimeOffset();
+            DateTimeOffset now = dateTimeBroker.GetDataTimeOffset();
             int age = (now - date).Days / 365;
 
             return age > 12;
